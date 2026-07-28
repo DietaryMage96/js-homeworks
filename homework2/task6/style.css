@@ -1,0 +1,26 @@
+#box {
+    width: 500px;
+    height: 150px;
+    border: 1px solid gray;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fcf6ef;
+    min-height: 500px;
+    min-width: 150px;
+}
+
+#box span {
+    font-size: 24px;
+}
+
+#corner {
+    width: 0;
+    height: 0;
+    border-bottom: 25px solid gray;
+    border-left: 25px solid transparent;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+}
