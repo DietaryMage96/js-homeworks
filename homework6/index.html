@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js.js" defer></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .controls input,
+        .controls select {
+            margin-right: 10px;
+            padding: 4px;
+        }
+
+        .columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .card img {
+            width: 100px;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .card-info h3 {
+            margin: 0 0 5px 0;
+        }
+
+        .card-info p {
+            margin: 3px 0;
+        }
+
+        .card-info input[type="number"] {
+            width: 50px;
+            padding: 2px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Облік серіалів</h1>
+<div class="controls">
+    <input type="text" id="searchInput" placeholder="Пошук за назвою...">
+
+    <select id="statusFilter">
+        <option value="all">Усі статуси</option>
+        <option value="Running">Running</option>
+        <option value="Ended">Ended</option>
+    </select>
+
+    <select id="ratingSort">
+        <option value="default">Без сортування</option>
+        <option value="desc">Рейтинг: від найвищого</option>
+        <option value="asc">Рейтинг: від найнижчого</option>
+    </select>
+
+    <p>
+        <b>Середній рейтинг доданих серіалів:</b>
+        <span id="averageRating">0</span>
+    </p>
+</div>
+
+<div class="columns">
+    <div class="column">
+        <h2>Мій список (<span id="myListCount">0</span>)</h2>
+        <div id="myShowsList"></div>
+    </div>
+
+    <div class="column">
+        <h2>Каталог серіалів</h2>
+        <div id="allShowsList">Завантаження серіалів...</div>
+    </div>
+</div>
+
+</body>
+</html>
