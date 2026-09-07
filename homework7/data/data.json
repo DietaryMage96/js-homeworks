@@ -1,0 +1,36 @@
+{
+  "exercises": [
+    {
+      "id": "3_4_Sit-Up",
+      "name": "3/4 Sit-Up",
+      "muscle": "abdominals",
+      "level": "beginner"
+    },
+    {
+      "id": "Push-Up",
+      "name": "Push-Up",
+      "muscle": "chest",
+      "level": "beginner"
+    },
+    {
+      "id": "Pull-Up",
+      "name": "Pull-Up",
+      "muscle": "back",
+      "level": "intermediate"
+    },
+    {
+      "id": "Squat",
+      "name": "Squat",
+      "muscle": "legs",
+      "level": "beginner"
+    },
+    {
+      "id": "Plank",
+      "name": "Plank",
+      "muscle": "abdominals",
+      "level": "beginner"
+    }
+  ],
+  "favorites": [],
+  "importCount": 2
+}
