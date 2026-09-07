@@ -1,0 +1,33 @@
+### Завдання 1: Випадкова вправа (GET)
+GET http://localhost:3000/api/exercises/random
+
+### Завдання 2: Спроба створити коротку вправу (POST -> має повернути 400)
+POST http://localhost:3000/api/exercises
+Content-Type: application/json
+
+{
+  "name": "a",
+  "muscle": "arms"
+}
+
+### Завдання 2: Створення правильної вправи (POST -> має повернути 201)
+POST http://localhost:3000/api/exercises
+Content-Type: application/json
+
+{
+  "name": "Plank",
+  "muscle": "abdominals",
+  "level": "beginner"
+}
+
+### Завдання 3: Імпорт (POST -> збільшує importCount на 1)
+POST http://localhost:3000/api/exercises/import
+Content-Type: application/json
+
+[]
+
+### Завдання 4: Статистика з importCount (GET)
+GET http://localhost:3000/api/exercises/stats
+
+### Додаткове завдання: Загальна кількість вправ (GET)
+GET http://localhost:3000/api/exercises/count
