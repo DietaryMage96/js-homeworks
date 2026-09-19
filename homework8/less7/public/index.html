@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог Фільмів | iOS Style</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+</head>
+<body>
+    <header class="ios-navbar">
+        <div class="ios-nav-content">
+            <div class="ios-nav-brand">
+                <span class="ios-logo-icon">🎬</span>
+                <h1>Каталог Фільмів</h1>
+            </div>
+            <div class="ios-stats-widget">
+                <div class="ios-stat-item">
+                    <span class="ios-stat-label">Переглянуто</span>
+                    <span class="ios-stat-value" id="watchedCount">0</span>
+                </div>
+                <div class="ios-stat-divider"></div>
+                <div class="ios-stat-item">
+                    <span class="ios-stat-label">Сер. рейтинг</span>
+                    <span class="ios-stat-value"><span id="avgRating">0</span> <small>/ 10</small></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="ios-container">
+        <!-- Notification Banner / Toast -->
+        <div id="notificationBanner" class="ios-notification" style="display: none;"></div>
+        <div id="loadingIndicator" class="ios-loading" style="display: none;">⏳ Завантаження даних...</div>
+
+        <div class="ios-grid-2col">
+            <!-- Add / Edit Form Card -->
+            <section class="ios-card">
+                <div class="ios-card-header">
+                    <h2 id="formTitle">Додати власний фільм</h2>
+                </div>
+                <form id="movieForm" class="ios-form">
+                    <input type="hidden" id="movieId">
+                    
+                    <div class="ios-form-group">
+                        <label for="name">Назва фільму</label>
+                        <input type="text" id="name" class="ios-input" required placeholder="Наприклад: Інтерстеллар">
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label for="genres">Жанри (через кому)</label>
+                        <input type="text" id="genres" class="ios-input" required placeholder="Drama, Sci-Fi, Thriller">
+                    </div>
+
+                    <div class="ios-form-row">
+                        <div class="ios-form-group">
+                            <label for="rating">Рейтинг (0-10)</label>
+                            <input type="number" id="rating" class="ios-input" step="0.1" min="0" max="10" required placeholder="8.5">
+                        </div>
+
+                        <div class="ios-form-group">
+                            <label for="year">Рік випуску</label>
+                            <input type="number" id="year" class="ios-input" required placeholder="2024">
+                        </div>
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label for="status">Статус перегляду</label>
+                        <select id="status" class="ios-select">
+                            <option value="plan">У планах</option>
+                            <option value="watched">Переглянуто</option>
+                        </select>
+                    </div>
+
+                    <div class="ios-form-actions">
+                        <button type="submit" id="saveBtn" class="ios-btn ios-btn-primary">Зберегти</button>
+                        <button type="button" id="cancelBtn" class="ios-btn ios-btn-secondary" onclick="resetForm()">Скасувати</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- TVMaze & Recommendations Card -->
+            <section class="ios-card">
+                <div class="ios-card-header">
+                    <h2>Пошук та Рекомендації</h2>
+                    <span id="apiStatus" class="ios-badge-status"></span>
+                </div>
+
+                <div class="ios-form-group">
+                    <label for="apiSearchInput">Пошук у базі TVMaze</label>
+                    <div class="ios-input-btn-group">
+                        <input type="text" id="apiSearchInput" class="ios-input" placeholder="Назва англійською...">
+                        <button type="button" class="ios-btn ios-btn-small" onclick="searchApi()">Шукати</button>
+                    </div>
+                </div>
+
+                <div class="ios-recommend-bar">
+                    <button type="button" class="ios-btn ios-btn-outline" onclick="zavantazhytyRekomendatsii()">
+                        ✨ Отримати рекомендації
+                    </button>
+                </div>
+
+                <div class="ios-table-wrapper">
+                    <table class="ios-table">
+                        <thead>
+                            <tr>
+                                <th>Назва</th>
+                                <th>Рейтинг</th>
+                                <th>Дія</th>
+                            </tr>
+                        </thead>
+                        <tbody id="apiTableBody">
+                            <tr><td colspan="3" class="ios-empty-text">Завантаження фонових даних...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Filter & Search Bar Section -->
+        <section class="ios-card ios-filter-card">
+            <div class="ios-card-header">
+                <h2>Мій список фільмів</h2>
+            </div>
+
+            <div class="ios-filter-grid">
+                <div class="ios-form-group">
+                    <label for="searchInput">Пошук у моєму списку</label>
+                    <input type="text" id="searchInput" class="ios-input" placeholder="🔍 Введіть назву..." oninput="render()">
+                </div>
+
+                <div class="ios-form-group">
+                    <label for="genreFilter">Фільтр за жанром</label>
+                    <select id="genreFilter" class="ios-select" onchange="render()">
+                        <option value="">Усі жанри</option>
+                    </select>
+                </div>
+
+                <div class="ios-form-group">
+                    <label for="statusFilter">Статус</label>
+                    <select id="statusFilter" class="ios-select" onchange="render()">
+                        <option value="">Усі статуси</option>
+                        <option value="watched">Переглянуто</option>
+                        <option value="plan">У планах</option>
+                    </select>
+                </div>
+
+                <div class="ios-form-group">
+                    <label for="sortSelect">Сортування</label>
+                    <select id="sortSelect" class="ios-select" onchange="render()">
+                        <option value="">Без сортування</option>
+                        <option value="desc">Рейтинг: від вищого</option>
+                        <option value="asc">Рейтинг: від нижчого</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table of Local Movies -->
+            <div class="ios-table-wrapper">
+                <table class="ios-table">
+                    <thead>
+                        <tr>
+                            <th>Назва</th>
+                            <th>Жанри</th>
+                            <th>Рейтинг</th>
+                            <th>Рік</th>
+                            <th>Статус</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

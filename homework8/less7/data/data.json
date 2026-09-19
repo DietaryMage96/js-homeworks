@@ -1,0 +1,75 @@
+{
+  "movies": [
+    {
+      "id": "2c58eeac-1e07-4ff5-b6c3-461ad2d82ab5",
+      "name": "Person of Interest",
+      "genres": [
+        "Action",
+        "Crime",
+        "Science-Fiction"
+      ],
+      "rating": 8.8,
+      "year": 2011,
+      "status": "plan"
+    },
+    {
+      "id": "76f4f6f0-3a16-4953-84f4-0d48182d14b3",
+      "name": "1",
+      "genres": [
+        "Action"
+      ],
+      "rating": 2,
+      "year": 2020,
+      "status": "watched"
+    },
+    {
+      "id": "f27839d6-cf3b-4597-9ded-0e39bdcda62f",
+      "name": "Interstellar",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "rating": 8.7,
+      "year": 2014,
+      "status": "watched"
+    },
+    {
+      "id": "7c9e7689-689d-4763-9a64-338f273d7cf8",
+      "name": "Vikings",
+      "genres": [
+        "Drama",
+        "Action",
+        "History"
+      ],
+      "rating": 8.6,
+      "year": 2013,
+      "status": "plan"
+    },
+    {
+      "id": "fb2ed7ee-cd60-452e-9af8-9c92b851ce4d",
+      "name": "Under the Dome",
+      "genres": [
+        "Drama",
+        "Science-Fiction",
+        "Thriller"
+      ],
+      "rating": 6.6,
+      "year": 2013,
+      "status": "plan"
+    },
+    {
+      "id": "0e69beac-4437-4567-9ab1-962c0b0ad90e",
+      "name": "Arrow",
+      "genres": [
+        "Drama",
+        "Action",
+        "Science-Fiction"
+      ],
+      "rating": 7.4,
+      "year": 2012,
+      "status": "plan"
+    }
+  ],
+  "favourites": []
+}
